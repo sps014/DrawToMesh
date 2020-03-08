@@ -26,7 +26,7 @@ function CreateCanvas()
             onMouseClick();
         }
         p.doubleClicked = function () {
-            shouldAddPoints = false;
+            onDoubleClick();
         }
     };
 
@@ -38,8 +38,10 @@ function CreateCanvas()
 
 function onDraw()
 {
+    P5Object.smooth();
+
     P5Object.strokeWeight(3);
-    P5Object.stroke(50, 0, 255);
+    P5Object.stroke(50, 0, 205);
     if (pointx.length != 0) {
         if (pointx[0] == 0 && pointy[0] == 0) {
             pointx.splice(0, 1);
@@ -49,9 +51,12 @@ function onDraw()
     }
     for (let i = 0; i < pointx.length; i+=1)
     {
+        P5Object.strokeWeight(10);
+
         if (i != pointx.length - 1)
             P5Object.line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
         P5Object.fill(255);
+        P5Object.strokeWeight(3);
         P5Object.circle(pointx[i], pointy[i], radius);
 
 
@@ -63,10 +68,24 @@ function onMouseClick()
     if (!shouldAddPoints)
         return;
 
+    if (P5Object.mouseX > document.getElementById("drawingBoard").offsetWidth || P5Object.mouseX < 0)
+        return;
+    if (P5Object.mouseY > document.getElementById("drawingBoard").offsetHeight || P5Object.mouseY < 0)
+        return;
+
     pointx.push(P5Object.mouseX);
     pointy.push(P5Object.mouseY);
 }
 
 function onDoubleClick() {
+    shouldAddPoints = false;
+    if (pointx.length >= 2) {
+        if (Math.abs(pointx[0] - pointx[pointx.length - 1]) < radius && Math.abs(pointy[0] - pointy[pointy.length - 1]) < radius) {
+            pointy.slice(pointy.length - 2, 1);
+            pointx.slice(pointx.length - 2, 1);
+            pointx[pointx.length - 1] = pointx[0];
+            pointy[pointx.length - 1] = pointy[0];
 
+        }
+    }
 }

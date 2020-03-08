@@ -2,9 +2,9 @@
 @inject IJSRuntime Runtime
 <NavMenu />
 
-<div class="btn-toolbar flex-center" role="toolbar" aria-label="Toolbar with button groups">
+<div class="btn-toolbar flex-center" style="position:relative;top:-4px" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group mr-0" role="group" aria-label="First group">
-        <button type="button" class="btn light-blue waves-effect"><i class="fas fa-star" aria-hidden="true"></i></button>
+        <button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt" aria-hidden="true"></i></button>
         <button type="button" class="btn light-blue waves-effect"><i class="fas fa-heart" aria-hidden="true"></i></button>
         <button type="button" class="btn light-blue waves-effect"><i class="fas fa-user" aria-hidden="true"></i></button>
         <button type="button" class="btn blue-gradient waves-effect"><i class="fab fa-twitter" aria-hidden="true"></i></button>
@@ -27,14 +27,17 @@
     #drawingBoard {
         background-color: white;
         left: 5%;
-        top: 12%;
+        top: 14%;
         bottom: 5%;
         right: 5%;
         position: absolute;
         width: 90%;
         z-index: -1;
-        height: 86%;
+        height: 84%;
     }
+
+
+
 </style>
 
 @code
