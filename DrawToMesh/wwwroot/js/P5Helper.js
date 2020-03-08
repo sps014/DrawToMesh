@@ -1,4 +1,6 @@
 ﻿let P5Object = new Object();
+let pointx = [];
+let pointy = [];
 
 function CreateCanvas()
 {
@@ -17,6 +19,9 @@ function CreateCanvas()
         p.draw = function () {
             onDraw();
         }
+        p.mouseClicked = function () {
+            onMouseClick();
+        }
     };
 
     let myp5 = new p5(s,"drawingBoard");
@@ -26,12 +31,16 @@ function CreateCanvas()
 
 function onDraw()
 {
-    P5Object.circle(12, 20, 40);
+    for (let i = 0; i < pointx.length; i+=1)
+    {
+        P5Object.circle(pointx[i], pointy[i],40);
+    }
 }
 
 function onMouseClick()
 {
-
+    pointx.push(P5Object.mouseX);
+    pointy.push(P5Object.mouseY);
 }
 
 function onDoubleClick() {
