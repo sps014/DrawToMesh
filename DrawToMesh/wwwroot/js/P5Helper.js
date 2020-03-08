@@ -4,6 +4,7 @@ let pointy = [];
 
 function CreateCanvas()
 {
+ 
     const s = (p) => {
         p.setup = function () {
             p.createCanvas(document.getElementById("drawingBoard").offsetWidth,
@@ -26,11 +27,16 @@ function CreateCanvas()
 
     let myp5 = new p5(s,"drawingBoard");
     P5Object = myp5;
-
+    pointx = [];
+    pointy = [];
 }
 
 function onDraw()
 {
+    if (pointx[0] == 0 && pointy[0] == 0) {
+        pointx.splice(0, 1);
+        pointy.splice(0, 1);
+    }
     for (let i = 0; i < pointx.length; i+=1)
     {
         P5Object.circle(pointx[i], pointy[i],40);
