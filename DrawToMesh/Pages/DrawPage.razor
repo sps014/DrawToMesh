@@ -1,12 +1,12 @@
 ﻿@page "/draw"
 <NavMenu />
 
-<div class="btn-toolbar vertical" role="toolbar" aria-label="Toolbar with button groups">
-    <div class="btn-group-vertical mr-5" role="group" aria-label="First group">
-        <button type="button" class="btn indigo lighten-2 waves-effect"><i class="fas fa-star" aria-hidden="true"></i></button>
-        <button type="button" class="btn blue lighten-2 waves-effect"><i class="fas fa-heart" aria-hidden="true"></i></button>
-        <button type="button" class="btn light-blue lighten-2 waves-effect"><i class="fas fa-user" aria-hidden="true"></i></button>
-        <button type="button" class="btn indigo lighten-2 waves-effect"><i class="fab fa-twitter" aria-hidden="true"></i></button>
+<div class="btn-toolbar flex-center" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-0" role="group" aria-label="First group">
+        <button type="button" class="btn blue-gradient waves-effect"><i class="fas fa-star" aria-hidden="true"></i></button>
+        <button type="button" class="btn light-blue waves-effect"><i class="fas fa-heart" aria-hidden="true"></i></button>
+        <button type="button" class="btn light-blue waves-effect"><i class="fas fa-user" aria-hidden="true"></i></button>
+        <button type="button" class="btn light-blue waves-effect"><i class="fab fa-twitter" aria-hidden="true"></i></button>
     </div>
 </div>
 
@@ -20,16 +20,17 @@
         margin: 0;
         padding: 0;
         overflow: hidden;
-        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+        background: rgb(195,234,237);
+        background: linear-gradient(90deg, rgba(195,234,237,1) 0%, rgba(126,126,191,1) 35%, rgba(87,116,120,1) 100%);
     }
     #drawingBoard {
-        background-color: crimson;
-        left: 7%;
+        background-color: white;
+        left: 5%;
         top: 12%;
-        bottom: 7%;
-        right: 7%;
+        bottom: 5%;
+        right: 5%;
         position: absolute;
-        width: 86%;
+        width: 90%;
         z-index: -1;
         height: 86%;
     }
