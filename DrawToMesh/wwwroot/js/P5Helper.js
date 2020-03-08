@@ -9,12 +9,12 @@ function CreateCanvas()
         p.setup = function () {
             p.createCanvas(document.getElementById("drawingBoard").offsetWidth,
                 document.getElementById("drawingBoard").offsetHeight);
-            p.background(122,0,0);
+            p.background(255);
         }
         p.windowResized = function () {
             p.resizeCanvas(document.getElementById("drawingBoard").offsetWidth,
                 document.getElementById("drawingBoard").offsetHeight);
-            p.background(122, 0, 0);
+            p.background(255);
 
         }
         p.draw = function () {
