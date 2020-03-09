@@ -18,6 +18,7 @@ function CreateCanvas()
             p.createCanvas(canvas.offsetWidth,
                 canvas.offsetHeight);
             p.background(255);
+            p.frameRate = 60;
         }
         p.windowResized = function () {
             p.resizeCanvas(canvas.offsetWidth,
@@ -26,6 +27,7 @@ function CreateCanvas()
 
         }
         p.draw = function () {
+            p.background(255);
             onDraw();
         }
         p.mouseClicked = function () {
@@ -103,8 +105,8 @@ function Undo()
     {
         undoStackx.push(pointx[pointx.length - 1]);
         undoStacky.push(pointy[pointy.length - 1]);
-        pointy.slice(pointy.length - 1, 1);
-        pointx.slice(pointx.length - 1, 1);
+        pointy.pop();
+        pointx.pop();
     }
 }
 
@@ -113,7 +115,7 @@ function Redo()
     if (undoStackx.length > 0) {
         pointx.push(undoStackx[undoStackx.length - 1]);
         pointy.push(undoStacky[undoStacky.length - 1]);
-        undoStackx.slice(undoStackx.length - 1, 1);
-        undoStacky.slice(undoStacky.length - 1, 1);
+        undoStackx.pop();
+        undoStacky.pop();
     }
 }
