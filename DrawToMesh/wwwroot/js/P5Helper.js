@@ -34,6 +34,12 @@ function CreateCanvas()
         p.mouseClicked = function () {
             onMouseClick();
         }
+        p.keyPressed = function ()
+        {
+            if (p.keyIsDown(p.CONTROL) && p.key.toLowerCase() == 'z') Undo();
+            if (p.keyIsDown(p.CONTROL) && p.key.toLowerCase() == 'y') Redo();
+
+        }
     };
 
     let myp5 = new p5(s,"drawingBoard");
@@ -67,8 +73,8 @@ function onDraw()
     }
     for (let i = 0; i < pointx.length; i+=1)
     {
-        P5Object.strokeWeight(1);
-        P5Object.stroke(0);
+        P5Object.strokeWeight(3);
+        P5Object.stroke(255,0,0);
         if (i != pointx.length - 1)
             P5Object.line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
         P5Object.fill(255);
