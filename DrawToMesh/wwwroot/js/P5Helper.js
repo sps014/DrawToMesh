@@ -9,6 +9,7 @@ let undoStacky = [];
 let canvas;
 let refImage;
 
+let hasRef = false;
 let isMouseOnFirstPoint = false;
 
 function CreateCanvas()
@@ -145,18 +146,22 @@ function OpenFileDialog() {
         let file = filedialog.files[0];
         if (file) {
             var reader = new FileReader();
-            reader.readAsText(file, "UTF-8");
+            reader.readAsDataURL(file);
             reader.onload = function (evt) {
-                alert(evt.target.result);
-            }
-            reader.onerror = function (evt) {
-                alert("error reading file");
+                var raw = new Image();
+                raw.src = evt.target.result; // base64 data here
+                raw.onload = function () {
+                    refImage = P5Object.createImage(canvas.offsetWidth, canvas.offsetHeight);
+                    refImage.drawingContext.drawImage(raw, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+                }
+                reader.onerror = function (evt) {
+                    alert("error reading file");
+                }
             }
         }
-    }
-    
-}
 
+    }
+}
 
 function Check1stAndLastPoint()
 {
