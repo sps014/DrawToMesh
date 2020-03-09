@@ -148,6 +148,12 @@ function OpenFileDialog() {
             var reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function (evt) {
+                if (file.type.indexOf("image") < 0) {
+                    alert('you choose file of type' + file.type);
+                    refImage = null;
+                    return;
+                }
+
                 var raw = new Image();
                 raw.src = evt.target.result; // base64 data here
                 raw.onload = function () {
