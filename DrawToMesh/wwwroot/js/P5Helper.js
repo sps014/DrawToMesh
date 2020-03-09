@@ -1,7 +1,7 @@
 ﻿let P5Object = new Object();
 let pointx = [];
 let pointy = [];
-let radius = 25;
+let radius = 20;
 let shouldAddPoints = true;
 let undoStack = [];
 let canvas;
@@ -56,10 +56,11 @@ function onDraw()
     for (let i = 0; i < pointx.length; i+=1)
     {
         P5Object.strokeWeight(1);
-
+        P5Object.stroke(0);
         if (i != pointx.length - 1)
             P5Object.line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
         P5Object.fill(255);
+        P5Object.stroke(50,0,205);
         P5Object.strokeWeight(3);
         P5Object.circle(pointx[i], pointy[i], radius);
 
