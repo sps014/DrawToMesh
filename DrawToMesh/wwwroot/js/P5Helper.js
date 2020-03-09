@@ -66,13 +66,18 @@ function onDraw()
         if (i != pointx.length - 1)
             P5Object.line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
         P5Object.fill(255);
-        if (isMouseOnFirstPoint&& i==0)
+        if (isMouseOnFirstPoint && i == 0) {
             P5Object.stroke(250, 0, 54);
+        }
         else
             P5Object.stroke(50, 0, 205);
 
         P5Object.strokeWeight(3);
-        P5Object.circle(pointx[i], pointy[i], radius);
+        if (isMouseOnFirstPoint && i == 0)
+            P5Object.circle(pointx[i], pointy[i], radius+5);
+        else
+            P5Object.circle(pointx[i], pointy[i], radius);
+
 
 
     }
