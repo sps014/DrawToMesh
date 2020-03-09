@@ -1,15 +1,17 @@
-﻿let P5Object = new Object();
-let pointx = [];
+﻿let pointx = [];
 let pointy = [];
-let radius = 20;
-let shouldAddPoints = true;
 let undoStackx = [];
 let undoStacky = [];
 
 let canvas;
 let refImage;
 
+let radius = 20;
+
+let P5Object = new Object();
+
 let hasRef = false;
+let shouldAddPoints = true;
 let isMouseOnFirstPoint = false;
 
 function CreateCanvas()
