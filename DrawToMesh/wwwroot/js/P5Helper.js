@@ -90,6 +90,11 @@ function onDraw()
 
 function onMouseClick()
 {
+    if (!(Math.abs(pointx[pointx.length - 1] - pointx[0]) < radius &&
+        Math.abs(pointy[pointx.length - 1] - pointy[0]) < radius))
+    {
+        shouldAddPoints = true;
+    }
     if (!shouldAddPoints)
         return;
 
