@@ -3,19 +3,23 @@ let pointx = [];
 let pointy = [];
 let radius = 25;
 let shouldAddPoints = true;
+let undoStack = [];
+let canvas;
 
 function CreateCanvas()
 {
- 
+
+    canvas = document.getElementById("drawingBoard");
+
     const s = (p) => {
         p.setup = function () {
-            p.createCanvas(document.getElementById("drawingBoard").offsetWidth,
-                document.getElementById("drawingBoard").offsetHeight);
+            p.createCanvas(canvas.offsetWidth,
+                canvas.offsetHeight);
             p.background(255);
         }
         p.windowResized = function () {
-            p.resizeCanvas(document.getElementById("drawingBoard").offsetWidth,
-                document.getElementById("drawingBoard").offsetHeight);
+            p.resizeCanvas(canvas.offsetWidth,
+                canvas.offsetHeight);
             p.background(255);
 
         }
@@ -68,9 +72,9 @@ function onMouseClick()
     if (!shouldAddPoints)
         return;
 
-    if (P5Object.mouseX > document.getElementById("drawingBoard").offsetWidth || P5Object.mouseX < 0)
+    if (P5Object.mouseX > canvas.offsetWidth || P5Object.mouseX < 0)
         return;
-    if (P5Object.mouseY > document.getElementById("drawingBoard").offsetHeight || P5Object.mouseY < 0)
+    if (P5Object.mouseY > canvas.offsetHeight || P5Object.mouseY < 0)
         return;
 
     pointx.push(P5Object.mouseX);
@@ -88,4 +92,14 @@ function onDoubleClick() {
 
         }
     }
+}
+
+function Undo()
+{
+    if()
+}
+
+function Redo()
+{
+
 }

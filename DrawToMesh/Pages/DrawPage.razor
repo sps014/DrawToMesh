@@ -53,4 +53,12 @@
     {
         await Runtime.InvokeVoidAsync("CreateCanvas");
     }
+    private async void Undo()
+    {
+        await Runtime.InvokeVoidAsync("Undo");
+    }
+    private async void Redo()
+    {
+        await Runtime.InvokeVoidAsync("Redo");
+    }
 }
