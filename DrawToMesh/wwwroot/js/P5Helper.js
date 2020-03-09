@@ -123,7 +123,6 @@ function onMouseClick()
     }
 }
 
-
 function Undo()
 {
     if (pointx.length > 0)
