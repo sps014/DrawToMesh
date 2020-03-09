@@ -7,6 +7,7 @@ let undoStackx = [];
 let undoStacky = [];
 
 let canvas;
+let refImage;
 
 let isMouseOnFirstPoint = false;
 
@@ -42,6 +43,10 @@ function CreateCanvas()
 
 function onDraw()
 {
+    if (refImage)
+    {
+        P5Object.image(refImage, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+    }
     
     P5Object.smooth();
 
@@ -144,7 +149,9 @@ function OpenFileDialog() {
             }
         }
     }
+    
 }
+
 
 function Check1stAndLastPoint()
 {
