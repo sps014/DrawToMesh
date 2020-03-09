@@ -17,13 +17,10 @@ function CreateCanvas()
         p.setup = function () {
             p.createCanvas(canvas.offsetWidth,
                 canvas.offsetHeight);
-            p.background(255);
-            p.frameRate = 60;
         }
         p.windowResized = function () {
             p.resizeCanvas(canvas.offsetWidth,
                 canvas.offsetHeight);
-            p.background(255);
 
         }
         p.draw = function () {
