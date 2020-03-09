@@ -3,7 +3,9 @@ let pointx = [];
 let pointy = [];
 let radius = 20;
 let shouldAddPoints = true;
-let undoStack = [];
+let undoStackx = [];
+let undoStacky = [];
+
 let canvas;
 
 function CreateCanvas()
@@ -97,10 +99,21 @@ function onDoubleClick() {
 
 function Undo()
 {
-    
+    if (pointx.length > 0)
+    {
+        undoStackx.push(pointx[pointx.length - 1]);
+        undoStacky.push(pointy[pointy.length - 1]);
+        pointy.slice(pointy.length - 1, 1);
+        pointx.slice(pointx.length - 1, 1);
+    }
 }
 
 function Redo()
 {
-
+    if (undoStackx.length > 0) {
+        pointx.push(undoStackx[undoStackx.length - 1]);
+        pointy.push(undoStacky[undoStacky.length - 1]);
+        undoStackx.slice(undoStackx.length - 1, 1);
+        undoStacky.slice(undoStacky.length - 1, 1);
+    }
 }
