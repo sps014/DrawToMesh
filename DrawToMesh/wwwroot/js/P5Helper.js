@@ -8,6 +8,8 @@ let undoStacky = [];
 
 let canvas;
 
+let isMouseOnFirstPoint = false;
+
 function CreateCanvas()
 {
 
@@ -30,9 +32,6 @@ function CreateCanvas()
         p.mouseClicked = function () {
             onMouseClick();
         }
-        p.doubleClicked = function () {
-            onDoubleClick();
-        }
     };
 
     let myp5 = new p5(s,"drawingBoard");
@@ -43,6 +42,7 @@ function CreateCanvas()
 
 function onDraw()
 {
+    
     P5Object.smooth();
 
     P5Object.strokeWeight(3);
@@ -53,6 +53,11 @@ function onDraw()
             pointy.splice(0, 1);
             P5Object.background(255);
         }
+        if (Math.abs(P5Object.mouseX - pointx[0]) < radius && Math.abs(P5Object.mouseY - pointy[0]) < radius) {
+            isMouseOnFirstPoint = true;
+        }
+        else
+            isMouseOnFirstPoint = false;
     }
     for (let i = 0; i < pointx.length; i+=1)
     {
@@ -61,7 +66,11 @@ function onDraw()
         if (i != pointx.length - 1)
             P5Object.line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
         P5Object.fill(255);
-        P5Object.stroke(50,0,205);
+        if (isMouseOnFirstPoint&& i==0)
+            P5Object.stroke(250, 0, 54);
+        else
+            P5Object.stroke(50, 0, 205);
+
         P5Object.strokeWeight(3);
         P5Object.circle(pointx[i], pointy[i], radius);
 
@@ -79,8 +88,16 @@ function onMouseClick()
     if (P5Object.mouseY > canvas.offsetHeight || P5Object.mouseY < 0)
         return;
 
-    pointx.push(P5Object.mouseX);
-    pointy.push(P5Object.mouseY);
+    if (Math.abs(P5Object.mouseX - pointx[0]) < radius && Math.abs(P5Object.mouseY - pointy[0]) < radius)
+    {
+        pointx.push(pointx[0]);
+        pointy.push(pointy[0]);
+    }
+    else
+    {
+        pointx.push(P5Object.mouseX);
+        pointy.push(P5Object.mouseY);
+    }
 }
 
 function onDoubleClick() {
@@ -115,4 +132,9 @@ function Redo()
         undoStackx.pop();
         undoStacky.pop();
     }
+}
+
+function OpenFileDialog()
+{
+    document.getElementById("file-upload").click();
 }

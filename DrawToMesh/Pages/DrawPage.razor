@@ -7,9 +7,11 @@
         <!--button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button-->
         <button type="button" class="btn light-blue waves-effect" @onclick="Undo"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
         <button type="button" class="btn light-blue waves-effect" @onclick="Redo"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
-        <button type="button" class="btn blue-gradient waves-effect"><i class="fas fa-box fa-2x"></i></button>
+        <button type="button" class="btn light-blue waves-effect" @onclick="UploadReference" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
+        <button type="button" class="btn peach-gradient waves-effect"><i class="fas fa-box fa-2x"></i></button>
     </div>
 </div>
+<input id="file-upload" style="visibility:hidden" type="file" />
 
 <div id="drawingBoard" class="shadow">
 
@@ -24,10 +26,11 @@
         background: rgb(195,234,237);
         background: linear-gradient(90deg, rgba(195,234,237,1) 0%, rgba(126,126,191,1) 35%, rgba(87,116,120,1) 100%);
     }
+
     #drawingBoard {
         background-color: white;
         left: 5%;
-        top: 115px;
+        top: 112px;
         bottom: 5%;
         right: 5%;
         position: absolute;
@@ -35,9 +38,6 @@
         z-index: -1;
         height: 82%;
     }
-
-
-
 </style>
 
 @code
@@ -60,5 +60,9 @@
     private async void Redo()
     {
         await Runtime.InvokeVoidAsync("Redo");
+    }
+    private async void UploadReference()
+    {
+        await Runtime.InvokeVoidAsync("OpenFileDialog");
     }
 }
