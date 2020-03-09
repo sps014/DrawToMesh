@@ -123,13 +123,27 @@ function Redo()
     }
 }
 
-function OpenFileDialog()
-{
-    document.getElementById("file-upload").click();
+function OpenFileDialog() {
+    let filedialog = document.getElementById("file-upload");
+    filedialog.click();
+    filedialog.onchange = function () {
+        let file = filedialog.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = function (evt) {
+                alert(evt.target.result);
+            }
+            reader.onerror = function (evt) {
+                alert("error reading file");
+            }
+        }
+    }
 }
+
 function Check1stAndLastPoint()
 {
-    if (pointx.length == 2)
+    if (pointx.length <= 2)
         return false;
 
     if (Math.abs(pointx[pointx.length - 1] - pointx[0]) < radius && Math.abs(pointy[pointx.length - 1] - pointy[0]) < radius) {
