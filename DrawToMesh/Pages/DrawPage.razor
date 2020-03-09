@@ -4,9 +4,9 @@
 
 <div class="btn-toolbar flex-center" style="position:relative;top:-5px" role="toolbar" aria-label="Toolbar with button groups">
     <div class="btn-group mr-0" role="group" aria-label="First group">
-        <button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt fa-2x" aria-hidden="true"></i></button>
-        <button type="button" class="btn light-blue waves-effect" @onclick="Undo"><i class="fas fa-undo fa-2x"></i></button>
-        <button type="button" class="btn light-blue waves-effect" @onclick="Redo"><i class="fas fa-redo fa-2x"></i></button>
+        <button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button>
+        <button type="button" class="btn light-blue waves-effect" @onclick="Undo"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
+        <button type="button" class="btn light-blue waves-effect" @onclick="Redo"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
         <button type="button" class="btn blue-gradient waves-effect"><i class="fas fa-box fa-2x"></i></button>
     </div>
 </div>
@@ -27,13 +27,13 @@
     #drawingBoard {
         background-color: white;
         left: 5%;
-        top: 14%;
+        top: 115px;
         bottom: 5%;
         right: 5%;
         position: absolute;
         width: 90%;
         z-index: -1;
-        height: 84%;
+        height: 82%;
     }
 
 
