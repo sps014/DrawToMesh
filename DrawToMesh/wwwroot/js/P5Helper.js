@@ -55,7 +55,7 @@ function onDraw()
     }
     for (let i = 0; i < pointx.length; i+=1)
     {
-        P5Object.strokeWeight(10);
+        P5Object.strokeWeight(3);
 
         if (i != pointx.length - 1)
             P5Object.line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
@@ -96,7 +96,7 @@ function onDoubleClick() {
 
 function Undo()
 {
-    if()
+    
 }
 
 function Redo()
