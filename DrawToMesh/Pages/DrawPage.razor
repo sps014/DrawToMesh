@@ -8,7 +8,7 @@
         <button type="button" class="btn light-blue waves-effect" @onclick="Undo"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
         <button type="button" class="btn light-blue waves-effect" @onclick="Redo"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
         <button type="button" class="btn light-blue waves-effect" @onclick="UploadReference" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
-        <button type="button" class="btn peach-gradient waves-effect"><i class="fas fa-box fa-2x"></i></button>
+        <button type="button" class="btn peach-gradient waves-effect" @onclick="Visualize3D"><i class="fas fa-box fa-2x"></i></button>
     </div>
 </div>
 <input id="file-upload" style="visibility:hidden" type="file" />
@@ -16,8 +16,12 @@
 <div id="drawingBoard" class="shadow">
 
 </div>
-
-
+@if (!ErrorVisible)
+{
+    <div class="alert alert-danger" role="alert" style="position:absolute;bottom:10px">
+        Path traced should be closed , ie. first and last point should be at same location and there must be more than 2 Points.
+    </div>
+}
 <style>
     body {
         margin: 0;
@@ -42,7 +46,7 @@
 
 @code
 {
-
+    private bool ErrorVisible = true;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -64,5 +68,10 @@
     private async void UploadReference()
     {
         await Runtime.InvokeVoidAsync("OpenFileDialog");
+    }
+    private async void Visualize3D()
+    {
+        ErrorVisible=await Runtime.InvokeAsync<bool>("Check1stAndLastPoint");
+        StateHasChanged();
     }
 }

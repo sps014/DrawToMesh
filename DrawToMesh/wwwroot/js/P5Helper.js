@@ -92,6 +92,7 @@ function onMouseClick()
     {
         pointx.push(pointx[0]);
         pointy.push(pointy[0]);
+        shouldAddPoints = false;
     }
     else
     {
@@ -100,18 +101,6 @@ function onMouseClick()
     }
 }
 
-function onDoubleClick() {
-    shouldAddPoints = false;
-    if (pointx.length >= 2) {
-        if (Math.abs(pointx[0] - pointx[pointx.length - 1]) < radius && Math.abs(pointy[0] - pointy[pointy.length - 1]) < radius) {
-            pointy.slice(pointy.length - 2, 1);
-            pointx.slice(pointx.length - 2, 1);
-            pointx[pointx.length - 1] = pointx[0];
-            pointy[pointx.length - 1] = pointy[0];
-
-        }
-    }
-}
 
 function Undo()
 {
@@ -137,4 +126,15 @@ function Redo()
 function OpenFileDialog()
 {
     document.getElementById("file-upload").click();
+}
+function Check1stAndLastPoint()
+{
+    if (pointx.length == 2)
+        return false;
+
+    if (Math.abs(pointx[pointx.length - 1] - pointx[0]) < radius && Math.abs(pointy[pointx.length - 1] - pointy[0]) < radius) {
+        return true;
+    }
+    else
+        return false;
 }
