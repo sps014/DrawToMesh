@@ -153,11 +153,12 @@ function Redo()
     }
 }
 
-function OpenFileDialog(mainAspect = false)
+function OpenFileDialog()
 {
-    maintainAspect = mainAspect;
+    maintainAspect = !document.getElementById("customSwitches").checked;
 
     let filedialog = document.getElementById("file-upload");
+    shouldAddPoints = false;
     filedialog.click();
     filedialog.onchange = function ()
     {
@@ -178,7 +179,7 @@ function OpenFileDialog(mainAspect = false)
                 raw.onload = function ()
                 {
 
-                    if (!mainAspect)
+                    if (!maintainAspect)
                     {
                         refImage = P5Object.createImage(canvas.offsetWidth, canvas.offsetHeight);
                         refImage.drawingContext.drawImage(raw, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
@@ -188,7 +189,7 @@ function OpenFileDialog(mainAspect = false)
                         refImage = P5Object.createImage(raw.width, raw.height);
                         refImage.drawingContext.drawImage(raw, 0, 0);
                     }
-
+                    shouldAddPoints = true;
                 }
                 reader.onerror = function (evt)
                 {
