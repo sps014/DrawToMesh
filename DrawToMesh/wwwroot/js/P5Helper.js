@@ -7,14 +7,14 @@ let canvas;
 let refImage;
 
 let radius = 20;
-
+let pencilSize = 3;
 let P5Object = new Object();
 
 let hasRef = false;
 let shouldAddPoints = true;
 let isMouseOnFirstPoint = false;
-let isPointClicked = true;
 let maintainAspect = true;
+
 
 function CreateCanvas()
 {
@@ -67,7 +67,7 @@ function onDraw()
     
     P5Object.smooth();
 
-    P5Object.strokeWeight(3);
+    P5Object.strokeWeight(pencilSize);
     P5Object.stroke(50, 0, 205);
 
     if (pointx.length != 0) {
@@ -84,18 +84,20 @@ function onDraw()
     }
     for (let i = 0; i < pointx.length; i+=1)
     {
-        P5Object.strokeWeight(3);
+        P5Object.strokeWeight(pencilSize);
         P5Object.stroke(255,0,0);
         if (i != pointx.length - 1)
             P5Object.line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
         P5Object.fill(255);
         if (isMouseOnFirstPoint && i == 0) {
-            P5Object.stroke(250, 0, 54);
+            P5Object.stroke(250, 120, 54);
         }
         else
             P5Object.stroke(50, 0, 205);
 
-        P5Object.strokeWeight(3);
+        P5Object.strokeWeight(pencilSize);
+        if (i != 0 && i != pointx.length-1)
+            continue;
         if (isMouseOnFirstPoint && i == 0)
             P5Object.circle(pointx[i], pointy[i], radius+5);
         else
