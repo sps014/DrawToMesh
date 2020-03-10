@@ -13,6 +13,8 @@ let P5Object = new Object();
 let hasRef = false;
 let shouldAddPoints = true;
 let isMouseOnFirstPoint = false;
+let isPointClicked = true;
+let maintainAspect = true;
 
 function CreateCanvas()
 {
@@ -54,13 +56,20 @@ function onDraw()
 {
     if (refImage)
     {
-        P5Object.image(refImage, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        if (!maintainAspect)
+            P5Object.image(refImage, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        else
+            P5Object.image(refImage, Math.abs(canvas.offsetWidth - refImage.width) / 2,
+                Math.abs(canvas.offsetHeight - refImage.height) / 2,
+                refImage.width, refImage.height);
+
     }
     
     P5Object.smooth();
 
     P5Object.strokeWeight(3);
     P5Object.stroke(50, 0, 205);
+
     if (pointx.length != 0) {
         if (pointx[0] == 0 && pointy[0] == 0) {
             pointx.splice(0, 1);
@@ -91,8 +100,6 @@ function onDraw()
             P5Object.circle(pointx[i], pointy[i], radius+5);
         else
             P5Object.circle(pointx[i], pointy[i], radius);
-
-
 
     }
 }
@@ -146,15 +153,20 @@ function Redo()
     }
 }
 
-function OpenFileDialog() {
+function OpenFileDialog(mainAspect = false)
+{
+    maintainAspect = mainAspect;
+
     let filedialog = document.getElementById("file-upload");
     filedialog.click();
-    filedialog.onchange = function () {
+    filedialog.onchange = function ()
+    {
         let file = filedialog.files[0];
         if (file) {
             var reader = new FileReader();
             reader.readAsDataURL(file);
-            reader.onload = function (evt) {
+            reader.onload = function (evt)
+            {
                 if (file.type.indexOf("image") < 0) {
                     alert('you choose file of type' + file.type);
                     refImage = null;
@@ -163,11 +175,23 @@ function OpenFileDialog() {
 
                 var raw = new Image();
                 raw.src = evt.target.result; // base64 data here
-                raw.onload = function () {
-                    refImage = P5Object.createImage(canvas.offsetWidth, canvas.offsetHeight);
-                    refImage.drawingContext.drawImage(raw, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+                raw.onload = function ()
+                {
+
+                    if (!mainAspect)
+                    {
+                        refImage = P5Object.createImage(canvas.offsetWidth, canvas.offsetHeight);
+                        refImage.drawingContext.drawImage(raw, 0, 0, canvas.offsetWidth, canvas.offsetHeight);
+                    }
+                    else
+                    {
+                        refImage = P5Object.createImage(raw.width, raw.height);
+                        refImage.drawingContext.drawImage(raw, 0, 0);
+                    }
+
                 }
-                reader.onerror = function (evt) {
+                reader.onerror = function (evt)
+                {
                     alert("error reading file");
                 }
             }
