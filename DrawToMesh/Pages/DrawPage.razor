@@ -7,7 +7,7 @@
         <!--button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button-->
         <button type="button" class="btn light-blue waves-effect" @onclick="Undo"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
         <button type="button" class="btn light-blue waves-effect" @onclick="Redo"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
-        <button type="button" class="btn light-blue waves-effect" @onclick="UploadReference" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
+        <button type="button" class="btn light-blue waves-effect" data-toggle="modal" data-target="#basicExampleModal" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
         <button type="button" class="btn light-blue waves-effect"><i class="fas fa-cog fa-2x white-text"></i></button>
         <button type="button" class="btn peach-gradient waves-effect" @onclick="Visualize3D"><i class="fas fa-dice-d20 fa-2x"></i></button>
     </div>
@@ -23,6 +23,30 @@
         Path traced should be closed , ie. first and last point should be at same location and there must be more than 2 Points.
     </div>
 }
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Load Reference Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <style>
     body {
         margin: 0;
@@ -72,7 +96,7 @@
     }
     private async void Visualize3D()
     {
-        ErrorVisible=await Runtime.InvokeAsync<bool>("Check1stAndLastPoint");
+        ErrorVisible = await Runtime.InvokeAsync<bool>("Check1stAndLastPoint");
         StateHasChanged();
     }
 }
