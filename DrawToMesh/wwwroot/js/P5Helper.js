@@ -163,6 +163,10 @@ function OpenFileDialog()
 
     let filedialog = document.getElementById("file-upload");
     shouldAddPoints = false;
+    filedialog.onclick = function ()
+    {
+        this.value = null;
+    };
     filedialog.click();
     filedialog.onchange = function ()
     {
