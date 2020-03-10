@@ -216,3 +216,9 @@ function Check1stAndLastPoint()
     else
         return false;
 }
+
+function ClearReference()
+{
+    refImage = null;
+
+}

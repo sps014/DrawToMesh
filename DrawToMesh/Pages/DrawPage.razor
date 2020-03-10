@@ -43,6 +43,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" @onclick="UploadReference" data-dismiss="modal" aria-label="Close">Load New Image</button>
+                <button type="button" class="btn btn-danger" @onclick="ClearReference" data-dismiss="modal" aria-label="Close">Clear</button>
+
             </div>
         </div>
     </div>
@@ -95,6 +97,10 @@
     private async void UploadReference()
     {
         await Runtime.InvokeVoidAsync("OpenFileDialog");
+    }
+    private async void ClearReference()
+    {
+        await Runtime.InvokeVoidAsync("ClearReference");
     }
     private async void Visualize3D()
     {
