@@ -155,7 +155,9 @@ function Redo()
 
 function OpenFileDialog()
 {
-    maintainAspect = !document.getElementById("customSwitches").checked;
+    document.getElementById("customSwitches").onchange = function () {
+        maintainAspect = !document.getElementById("customSwitches").checked;
+    };
 
     let filedialog = document.getElementById("file-upload");
     shouldAddPoints = false;
