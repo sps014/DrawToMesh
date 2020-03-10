@@ -39,8 +39,7 @@
                 ...
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" @onclick="UploadReference">Load</button>
             </div>
         </div>
     </div>
@@ -72,6 +71,7 @@
 @code
 {
     private bool ErrorVisible = true;
+    private bool maintainAspect=false;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -92,7 +92,7 @@
     }
     private async void UploadReference()
     {
-        await Runtime.InvokeVoidAsync("OpenFileDialog");
+        await Runtime.InvokeVoidAsync("OpenFileDialog",maintainAspect);
     }
     private async void Visualize3D()
     {
