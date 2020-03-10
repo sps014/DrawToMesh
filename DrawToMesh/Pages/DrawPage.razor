@@ -36,7 +36,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <!-- Default switch -->
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitches">
+                    <label class="custom-control-label" for="customSwitches">Fill Image on Canvas</label>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" @onclick="UploadReference">Load</button>
@@ -71,7 +75,7 @@
 @code
 {
     private bool ErrorVisible = true;
-    private bool maintainAspect=false;
+    private bool maintainAspect=true;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
