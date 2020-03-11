@@ -35,10 +35,10 @@ function Draw3D()
 
     P5.smooth();
     P5.fill(0, 255, 0);
-    P5.beginShape();
+    P5.beginShape(P5.QUAD_STRIP);
     for (let i = 0; i < pointx.length; i++) {
-        P5.vertex(calMidX() - pointx[i],calMidY()-pointy[i],0);
-        P5.vertex(calMidX() - pointx[i],calMidY() -pointy[i],40);
+        P5.vertex(pointx[i] - calMidX(), pointy[i] - calMidY(), 0);
+        P5.vertex(pointx[i] - calMidX(), pointy[i] - calMidY(), 40);
 
     }
     P5.rotateY(P5.millis() / 1000);
