@@ -1,5 +1,6 @@
 ﻿@page "/draw"
 @inject IJSRuntime Runtime
+@inject NavigationManager NavManager
 <NavMenu />
 
 <div class="btn-toolbar flex-center" style="position:relative;top:-5px" role="toolbar" aria-label="Toolbar with button groups">
@@ -105,7 +106,18 @@
     private async void Visualize3D()
     {
         ErrorVisible = await Runtime.InvokeAsync<bool>("Check1stAndLastPoint");
+        if(ErrorVisible)
+        {
+            LoadAllPoints();
+        }
         StateHasChanged();
+    }
+    private async void LoadAllPoints()
+    {
+        DoodleVertices.PointX= await Runtime.InvokeAsync<double[]>("sendVerticesX");
+        DoodleVertices.PointY = await Runtime.InvokeAsync<double[]>("sendVerticesY");
+        NavManager.NavigateTo("/preview/0");
+
     }
 
 }

@@ -239,3 +239,10 @@ function ClearReference()
     refImage = null;
 
 }
+function sendVerticesX()
+{
+    return pointx;
+}
+function sendVerticesY() {
+    return pointy;
+}

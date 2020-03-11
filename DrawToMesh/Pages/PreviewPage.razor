@@ -1,0 +1,39 @@
+﻿@page "/preview/{type}"
+hello there on preview @type
+
+@foreach(double d in DoodleVertices.PointX)
+{
+    <p>@d</p>
+}
+
+@code
+{
+    [Parameter]
+    public string type { get; set; }
+
+    double[] pointX;
+    double[] pointY;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        LoadVertices();
+    }
+
+    private void LoadVertices()
+    {
+        switch(int.Parse(type))
+        {
+            case 0:
+                LoadFromDoodle();
+                break;
+        }
+    }
+    private void LoadFromDoodle()
+    {
+        pointX = DoodleVertices.PointX;
+        pointY = DoodleVertices.PointY;
+        StateHasChanged();
+    }
+
+}
