@@ -228,6 +228,7 @@ function Check1stAndLastPoint()
         return false;
 
     if (Math.abs(pointx[pointx.length - 1] - pointx[0]) < radius && Math.abs(pointy[pointx.length - 1] - pointy[0]) < radius) {
+        P5Object.remove();
         return true;
     }
     else
@@ -251,4 +252,11 @@ function loadVerticesX(x) {
 }
 function loadVerticesY(y) {
     pointy = y;
+    shouldAddPoints = true;
 } 
+
+function DeleteAll() {
+    pointx = [];
+    pointy = [];
+    shouldAddPoints = true;
+}

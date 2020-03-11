@@ -8,6 +8,7 @@
         <!--button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button-->
         <button type="button" class="btn light-blue waves-effect" @onclick="Undo"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
         <button type="button" class="btn light-blue waves-effect" @onclick="Redo"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
+        <button type="button" class="btn light-blue waves-effect" @onclick="DeleteAll"><i class="fas fa-backspace white-text fa-2x"></i></button>
         <button type="button" class="btn light-blue waves-effect" data-toggle="modal" data-target="#basicExampleModal" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
         <button type="button" class="btn peach-gradient waves-effect" @onclick="Visualize3D"><i class="fas fa-dice-d20 fa-2x"></i></button>
     </div>
@@ -107,7 +108,7 @@
     private async void Visualize3D()
     {
         ErrorVisible = await Runtime.InvokeAsync<bool>("Check1stAndLastPoint");
-        if(ErrorVisible)
+        if (ErrorVisible)
         {
             LoadAllPoints();
         }
@@ -115,7 +116,7 @@
     }
     private async void LoadAllPoints()
     {
-        DoodleVertices.PointX= await Runtime.InvokeAsync<double[]>("sendVerticesX");
+        DoodleVertices.PointX = await Runtime.InvokeAsync<double[]>("sendVerticesX");
         DoodleVertices.PointY = await Runtime.InvokeAsync<double[]>("sendVerticesY");
         NavManager.NavigateTo("/preview/0");
 
@@ -123,7 +124,7 @@
 
     async void LoadVertices()
     {
-        if(DoodleVertices.PointX!=null)
+        if (DoodleVertices.PointX != null)
         {
             await Runtime.InvokeVoidAsync("loadVerticesX", DoodleVertices.PointX);
             await Runtime.InvokeVoidAsync("loadVerticesY", DoodleVertices.PointY);
@@ -131,4 +132,14 @@
         }
     }
 
+    async void DeleteAll()
+    {
+        await Runtime.InvokeVoidAsync("DeleteAll");
+        if (DoodleVertices.PointX != null)
+        {
+            DoodleVertices.PointX = new double[] { };
+            DoodleVertices.PointY = new double[] { };
+        }
+
+    }
 }
