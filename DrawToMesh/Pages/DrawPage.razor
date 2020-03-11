@@ -120,4 +120,14 @@
 
     }
 
+    async void LoadVertices()
+    {
+        if(DoodleVertices.PointX!=null)
+        {
+            await Runtime.InvokeVoidAsync("loadVerticesX", DoodleVertices.PointX);
+            await Runtime.InvokeVoidAsync("loadVerticesY", DoodleVertices.PointY);
+
+        }
+    }
+
 }

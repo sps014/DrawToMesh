@@ -246,3 +246,9 @@ function sendVerticesX()
 function sendVerticesY() {
     return pointy;
 }
+function loadVerticesX(x) {
+    pointx = x;
+}
+function loadVerticesY(y) {
+    pointy = y;
+} 
