@@ -1,4 +1,6 @@
 ﻿@page "/preview/{type}"
+@inject IJSRuntime Runtime
+
 <NavMenu />
 <div class="container mt-1 pt-2">
 
@@ -20,7 +22,7 @@
                             </div>
                             <div class="col-lg-3 red accent-3 rounded-right py-5 px-md-5">
                                 <h4 class="font-weight-bold ml-3 mb-4 pb-2">Tweaks</h4>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -46,7 +48,7 @@
     #p3dboard {
         background-color: black;
         left: 50px;
-        right:50px;
+        right: 50px;
         top: 112px;
         bottom: 5%;
         width: 100%;
@@ -57,33 +59,44 @@
 
 @code
 {
-        [Parameter]
-        public string type { get; set; }
+    [Parameter]
+    public string type { get; set; }
 
-        double[] pointX;
-        double[] pointY;
+    double[] pointX;
+    double[] pointY;
 
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-            LoadVertices();
-        }
-
-        private void LoadVertices()
-        {
-            switch (int.Parse(type))
-            {
-                case 0:
-                    LoadFromDoodle();
-                    break;
-            }
-        }
-
-        private void LoadFromDoodle()
-        {
-            pointX = DoodleVertices.PointX;
-            pointY = DoodleVertices.PointY;
-            StateHasChanged();
-        }
-
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        LoadVertices();
     }
+
+    private void LoadVertices()
+    {
+        switch (int.Parse(type))
+        {
+            case 0:
+                LoadFromDoodle();
+                break;
+        }
+    }
+
+    private void LoadFromDoodle()
+    {
+        pointX = DoodleVertices.PointX;
+        pointY = DoodleVertices.PointY;
+        StateHasChanged();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+            Init();
+    }
+    private async void Init()
+    {
+        await Runtime.InvokeVoidAsync("CreateCanvas3D");
+    }
+
+}
