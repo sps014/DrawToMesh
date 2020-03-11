@@ -16,7 +16,6 @@ function CreateCanvas3D() {
         p.windowResized = function () {
             p.resizeCanvas(canvas3d.offsetWidth,
                 canvas3d.offsetHeight);
-
         }
         p.draw = function () {
             p.background(255);
@@ -31,13 +30,34 @@ function CreateCanvas3D() {
 
 function Draw3D()
 {
-    P5.beginShape(P5.LINES);
-    P5.stroke(255, 0, 0);
-    for (let i = -canvas3d.offsetWidth; i < canvas3d.offsetWidth; i += gridGap)
-    {
-        for (let j = -canvas3d.offsetHeight; j < canvas3d.offsetHeight; j += gridGap) {
-            P5.vertex(i, j, 0);
-        }
+    P5.stroke(0, 255, 0);
+    //P5.strokeWeight(5);
+
+    P5.smooth();
+    P5.fill(0, 255, 0);
+    P5.beginShape();
+    for (let i = 0; i < pointx.length; i++) {
+        P5.vertex(calMidX() - pointx[i],calMidY()-pointy[i],0);
+        P5.vertex(calMidX() - pointx[i],calMidY() -pointy[i],40);
+
     }
-    P5.endShape();
+    P5.rotateY(P5.millis() / 1000);
+    P5.endShape(P5.CLOSE);
+}
+
+function calMidX() {
+    let mid = 0;
+    for (let i = 0; i < pointx.length; i++) {
+        mid += pointx[i];
+    }
+    mid = mid / pointx.length;
+    return mid;
+}
+function calMidY() {
+    let mid = 0;
+    for (let i = 0; i < pointy.length; i++) {
+        mid += pointy[i];
+    }
+    mid = mid / pointy.length;
+    return mid;
 }
