@@ -82,6 +82,19 @@ function onDraw()
         else
             isMouseOnFirstPoint = false;
     }
+    if (pointx.length >= 2)
+    {
+        if (pointx[0] == pointx[pointx.length - 1] && pointy[0] == pointy[pointy.length - 1]) {
+            P5Object.fill(0, 0, 250,120);
+            P5Object.beginShape();
+
+            for (let i = 0; i < pointx.length; i++) {
+                P5Object.vertex(pointx[i], pointy[i]);
+            }
+
+            P5Object.endShape(P5Object.CLOSE);
+        }
+    }
     for (let i = 0; i < pointx.length; i+=1)
     {
         P5Object.strokeWeight(pencilSize);
@@ -96,7 +109,7 @@ function onDraw()
             P5Object.stroke(50, 0, 205);
 
         P5Object.strokeWeight(pencilSize);
-        if (i != 0 && i != pointx.length-1)
+        if (i != 0)
             continue;
         if (isMouseOnFirstPoint && i == 0)
             P5Object.circle(pointx[i], pointy[i], radius+5);
