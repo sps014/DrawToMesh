@@ -86,6 +86,7 @@
     private async void Init()
     {
         await Runtime.InvokeVoidAsync("CreateCanvas");
+        LoadVertices();
     }
     private async void Undo()
     {
