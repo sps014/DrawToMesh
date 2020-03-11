@@ -252,7 +252,7 @@ function loadVerticesX(x) {
 }
 function loadVerticesY(y) {
     pointy = y;
-    shouldAddPoints = true;
+    shouldAddPoints = false;
 } 
 
 function DeleteAll() {

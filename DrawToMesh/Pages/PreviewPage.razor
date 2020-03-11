@@ -1,39 +1,101 @@
 ﻿@page "/preview/{type}"
-<NavMenu/>
+<NavMenu />
+<div class="container mt-1 pt-2">
 
-@foreach(double d in DoodleVertices.PointX)
-{
-    <p>@d</p>
-}
+    <!--Section: Content-->
+    <section class="white-text">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <div class="col-12">
+                <div class="card z-depth-2">
+                    <div class="card-body p-0">
+                        <div class="row ">
+                            <div class="col-lg-9 black rounded-left py-5 px-md-5">
+                                <h4 class="font-weight-bold ml-3 mb-4 pb-2">3D Preview</h4>
+                                <ul class="fa-ul mb-0">
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Bootstrap Like Data API and classes</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Gulp tasks ready</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>SCSS files included</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Built on top of Bootstrap 4</li>
+                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Developer friendly code</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 red accent-3 rounded-right py-5 px-md-5">
+                                <h4 class="font-weight-bold ml-3 mb-4 pb-2">Tweaks</h4>
+                                <ul class="fa-ul mb-0">
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Clean & Modern Design</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Visitors would love to spend more time</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>High possibility of conversion rate</li>
+                                    <li class="mb-2"><span class="fa-li"><i class="fas fa-check"></i></span>Ability to register from the landing page</li>
+                                    <li><span class="fa-li"><i class="fas fa-check"></i></span>Includes 9 landing page samples</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Grid row -->
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: rgb(195,234,237);
+        background: linear-gradient(90deg, rgba(195,234,237,1) 0%, rgba(126,126,191,1) 35%, rgba(87,116,120,1) 100%);
+    }
+
+    #p3dboard {
+        background-color: black;
+        left: 5%;
+        top: 112px;
+        bottom: 5%;
+        right: 5%;
+        position: absolute;
+        width: 90%;
+        z-index: -1;
+        height: 82%;
+    }
+</style>
+
 
 @code
 {
-    [Parameter]
-    public string type { get; set; }
+        [Parameter]
+        public string type { get; set; }
 
-    double[] pointX;
-    double[] pointY;
+        double[] pointX;
+        double[] pointY;
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        LoadVertices();
-    }
-
-    private void LoadVertices()
-    {
-        switch(int.Parse(type))
+        protected override void OnInitialized()
         {
-            case 0:
-                LoadFromDoodle();
-                break;
+            base.OnInitialized();
+            LoadVertices();
         }
-    }
-    private void LoadFromDoodle()
-    {
-        pointX = DoodleVertices.PointX;
-        pointY = DoodleVertices.PointY;
-        StateHasChanged();
-    }
 
-}
+        private void LoadVertices()
+        {
+            switch (int.Parse(type))
+            {
+                case 0:
+                    LoadFromDoodle();
+                    break;
+            }
+        }
+
+        private void LoadFromDoodle()
+        {
+            pointX = DoodleVertices.PointX;
+            pointY = DoodleVertices.PointY;
+            StateHasChanged();
+        }
+
+    }
