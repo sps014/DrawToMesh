@@ -88,6 +88,7 @@
     {
         await Runtime.InvokeVoidAsync("CreateCanvas");
         LoadVertices();
+        NavManager.LocationChanged += LocationChanged;
     }
     private async void Undo()
     {
@@ -141,5 +142,21 @@
             DoodleVertices.PointY = new double[] { };
         }
 
+    }
+    void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        Console.WriteLine("nav to:" + e.Location);
+        if (e.Location.IndexOf("/draw") <= 0)
+            Remove();
+        else if (e.Location.IndexOf("/preview/") <= 0)
+            Remove3D();
+    }
+    async void Remove()
+    {
+        await Runtime.InvokeVoidAsync("Remove2D");
+    }
+    async void Remove3D()
+    {
+        await Runtime.InvokeVoidAsync("Remove3D");
     }
 }

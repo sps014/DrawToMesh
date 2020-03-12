@@ -41,21 +41,25 @@ function Draw3D()
     for (let i = 0; i < pointx.length / 2; i++)
     {
         if (i == 0) {
-            P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
-            P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
-            P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
+            //P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
+            //P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
+            //P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
         }
         else
         {
+            //P5.vertex(pointx[0] - midX, pointy[0] - midY, 40);
+            //P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
+            //P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
 
+            //P5.vertex(pointx[0] - midX, pointy[0] - midY, 40);
+            //P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
+            //P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
         }
 
 
-        P5.vertex(pointx[0] - midX, pointy[0] - midY, 40);
-        P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
-        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
+
     }
-    for (let i = 0; i < pointx.length - 1; i++) {
+    for (let i = 0; i < pointx.length; i++) {
        
 
         P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
@@ -73,7 +77,7 @@ function Draw3D()
 
     }
     P5.rotateY(P5.millis() / 1000);
-    P5.endShape(P5.CLOSE);
+    P5.endShape();
 }
 
 function calMidX() {
@@ -91,4 +95,7 @@ function calMidY() {
     }
     mid = mid / pointy.length;
     return mid;
+}
+function Remove3D() {
+    P5.remove();
 }

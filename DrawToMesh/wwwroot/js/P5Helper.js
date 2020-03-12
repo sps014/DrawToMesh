@@ -260,3 +260,7 @@ function DeleteAll() {
     pointy = [];
     shouldAddPoints = true;
 }
+function Remove2D()
+{
+    P5Object.remove();
+}
