@@ -145,7 +145,6 @@
     }
     void LocationChanged(object sender, LocationChangedEventArgs e)
     {
-        Console.WriteLine("nav to:" + e.Location);
         if (e.Location.IndexOf("/draw") <= 0)
             Remove();
         else if (e.Location.IndexOf("/preview/") <= 0)

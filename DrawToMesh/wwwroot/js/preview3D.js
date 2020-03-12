@@ -35,15 +35,15 @@ function Draw3D()
 
     P5.smooth();
     P5.fill(0, 50, 170);
-    P5.beginShape();
+    P5.beginShape(P5.TRIANGLES);
     let midX = calMidX();
     let midY = calMidY();
     for (let i = 0; i < pointx.length / 2; i++)
     {
         if (i == 0) {
-            //P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
-            //P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
-            //P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
+            P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
+            P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
+            P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
         }
         else
         {
@@ -59,7 +59,7 @@ function Draw3D()
 
 
     }
-    for (let i = 0; i < pointx.length; i++) {
+    for (let i = 0; i < pointx.length-1; i++) {
        
 
         P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
@@ -77,7 +77,7 @@ function Draw3D()
 
     }
     P5.rotateY(P5.millis() / 1000);
-    P5.endShape();
+    P5.endShape(P5.CLOSE);
 }
 
 function calMidX() {
