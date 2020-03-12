@@ -34,14 +34,24 @@ function Draw3D()
     //P5.strokeWeight(5);
 
     P5.smooth();
-    P5.fill(0, 255, 0);
+    P5.fill(0, 50, 170);
     P5.beginShape();
     let midX = calMidX();
     let midY = calMidY();
     for (let i = 0; i < pointx.length - 1; i++) {
         P5.vertex(pointx[0] - midX, pointy[0] - midY,0);
         P5.vertex(pointx[i] - midX, pointy[i] - midY,0);
-        P5.vertex(pointx[i+1] - midX, pointy[i+1] - midY,0);
+        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
+
+        P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
+        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
+        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
+
+        P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
+        P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
+        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
+
+
         P5.vertex(pointx[0] - midX, pointy[0] - midY, 40);
         P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
         P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
