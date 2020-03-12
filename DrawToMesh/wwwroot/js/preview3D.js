@@ -40,21 +40,21 @@ function Draw3D()
     let midY = calMidY();
     for (let i = 0; i < pointx.length / 2; i++)
     {
-        if (i == 0) {
-            P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
-            P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
-            P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
-        }
-        else
-        {
-            //P5.vertex(pointx[0] - midX, pointy[0] - midY, 40);
-            //P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
-            //P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
+        //if (i == 0) {
+        //    P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
+        //    P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
+        //    P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
+        //}
+        //else
+        //{
+        //    P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
+        //    P5.vertex(pointx[i+1] - midX, pointy[i+1] - midY, 0);
+        //    P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
 
-            //P5.vertex(pointx[0] - midX, pointy[0] - midY, 40);
-            //P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
-            //P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
-        }
+        //    P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
+        //    P5.vertex(pointx[pointy.length - 3 - i] - midX, pointy[pointy.length - 3 - i] - midY, 0);
+        //    P5.vertex(pointx[pointy.length - 2 - i] - midX, pointy[pointy.length - 2 - i] - midY, 0);
+        //}
 
 
 
