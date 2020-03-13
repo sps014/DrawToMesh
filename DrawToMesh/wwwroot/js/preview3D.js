@@ -109,3 +109,57 @@ function calMidY() {
 function Remove3D() {
     P5.remove();
 }
+
+function createPolygon()
+{
+    let poly=[];
+    for (let i = 0; i < pointx.length-1; i++)
+    {
+        poly.push({ x: pointx[i], y: pointy[i] })
+    }
+    return poly;
+}
+
+function cross(a,b)
+{
+    return a.x * b.y - a.y + b.x;
+}
+function orien(polygon)
+{
+    let sum = 0;
+    for (let i = 0; i < polygon.length-1; i++)
+    {
+        sum += cross(polygon[i], polygon[i + 1] );
+    }
+    return sum;
+}
+
+function GetAllTrigs(poly)
+{
+    let poly = createPolygon();
+    let isCW = (orien(poly) > 0);
+    if (!isCW)
+    {
+        poly.reverse();
+    }
+
+    let Trigs = Object();
+
+    while (poly.length >= 3)
+    {
+        let l = poly.length;
+
+        for (let i = 0; i < l; i++)
+        {
+            let p1 = poly[i];
+            let p2 = poly[(i+1)%l];
+            let p3 = poly[(i + 2) % l];
+
+            let cw = (orien([p1, p2, p3]) > 0);
+            if (!cw)
+                continue;
+        }
+    }
+    return Trigs;
+
+}
