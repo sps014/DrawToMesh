@@ -42,23 +42,23 @@
       "frameworks": {
         "netstandard2.1": {
           "dependencies": {
-            "Microsoft.AspNetCore.Blazor": {
-              "target": "Package",
-              "version": "[3.2.0-preview1.20073.1, )"
-            },
-            "Microsoft.AspNetCore.Blazor.Build": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.2.0-preview1.20073.1, )"
-            },
-            "Microsoft.AspNetCore.Blazor.DevServer": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.2.0-preview1.20073.1, )"
-            },
             "Microsoft.AspNetCore.Blazor.HttpClient": {
               "target": "Package",
-              "version": "[3.2.0-preview1.20073.1, )"
+              "version": "[3.2.0-preview2.20160.5, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[3.2.0-preview2.20160.5, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Build": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0-preview2.20160.5, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0-preview2.20160.5, )"
             }
           },
           "imports": [
