@@ -117,6 +117,12 @@ function onDraw()
             P5Object.circle(pointx[i], pointy[i], radius);
 
     }
+
+    P5Object.stroke(255, 0, 0);
+    if (shouldAddPoints && pointx.length >= 1 && P5Object.mouseX >= 0 && P5Object.mouseY >= 0)
+    {
+        P5Object.line(pointx[pointx.length - 1], pointy[pointx.length - 1], P5Object.mouseX, P5Object.mouseY);
+    }
 }
 
 function onMouseClick()
