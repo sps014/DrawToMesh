@@ -96,7 +96,7 @@
     }
     private async void Init()
     {
-        await Runtime.InvokeVoidAsync("CreateCanvas3D",type);
+        await Runtime.InvokeVoidAsync("CreateCanvas3D",int.Parse(type));
     }
 
 }
