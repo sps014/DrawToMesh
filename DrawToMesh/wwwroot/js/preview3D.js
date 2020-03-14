@@ -2,6 +2,7 @@
 let canvas3d;
 let gridGap = 10;
 let mode;
+let distToCam=0;
 function CreateCanvas3D(Mode=0) {
 
     mode = Mode;
@@ -31,7 +32,9 @@ function CreateCanvas3D(Mode=0) {
 
 function Draw3D()
 {
-    if (mode == 0) {
+    P5.camera(0, 0, distToCam + (canvas3d.offsetHeight / 2.0) / Math.tan(P5.PI * 30.0 / 180.0), 0, 0, 0, 0, 1, 0);
+    if (mode == 0)
+    {
         DrawFromShape();
     }
 }
@@ -105,4 +108,6 @@ function calMidY() {
 function Remove3D() {
     P5.remove();
 }
-
+function CamDistanceChanged(value) {
+    distToCam = value;
+}
