@@ -126,14 +126,14 @@ function DrawFromShape()
         P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, Depth);
 
         backTrig.push({
-            P1: pointx.length - 1 + (i + 1),
+            P1: i+pointx.length-1,
             P2: i + 1,
             P3: i
         });
         backTrig.push({
             P1:i,
-            P2: i + pointx.length - 1,
-            P3: pointx.length - 1 + (i + 1)
+            P2: i + pointx.length - 2,
+            P3: i+pointx.length-1 
         });
 
 

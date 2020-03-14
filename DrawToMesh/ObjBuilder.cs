@@ -22,7 +22,7 @@ namespace DrawToMesh
             StringBuilder vert = new StringBuilder("");
             for (int i = 0; i < vertex.Length; i++)
             {
-                vert.Append("v " + vertex[i].X + " " + vertex[i].Y + " " + vertex[i].Z+"\r\n");
+                vert.Append("v  " + vertex[i].X.ToString("0.0000000") + " " + vertex[i].Y.ToString("0.0000000") + " " + vertex[i].Z.ToString("0.0000000") + "\r\n");
             }
             return vert.ToString();
         }
