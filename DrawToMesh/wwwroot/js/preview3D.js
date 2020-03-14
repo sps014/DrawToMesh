@@ -74,16 +74,22 @@ function DrawFromShape()
     let midY = calMidY();
 
     let parr = [];
+    let backVert = [];
+
     for (let i = 0; i < pointx.length - 1; i++)
     {
         parr.push(pointx[i]);
         parr.push(pointy[i]);
 
-        resultVertex.push({ X: pointx[i], Y: pointy[i],Z:0 })
+        resultVertex.push({ X: pointx[i], Y: pointy[i], Z: 0 });
+        backVert.push({ X: pointx[i], Y: pointy[i], Z: Depth });
     }
+
+    resultVertex=resultVertex.concat(backVert);
 
     let res = earcut(parr);
 
+    let backTrig = [];
 
     for (let i = 0; i < res.length; i += 3)
     {
@@ -95,11 +101,18 @@ function DrawFromShape()
         P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY, Depth);
         P5.vertex(pointx[res[i]] - midX, pointy[res[i]] - midY, Depth);
 
-        resultTriangles.push({ P1: res[i], P2: res[i + 1], P3: res[i + 2] });
+        resultTriangles.push({ P1: res[i+2], P2: res[i + 1], P3: res[i] });
+        backTrig.push({
+            P1: res[i] + pointx.length-1, P2: res[i + 1] + pointx.length-1,
+            P3: res[i+2] + pointx.length-1
+        });
 
     }
 
+    resultTriangles=resultTriangles.concat(backTrig);
     //side rect
+
+    backTrig = [];
 
     for (let i = 0; i < pointx.length - 1; i++) {
 
@@ -112,10 +125,21 @@ function DrawFromShape()
         P5.vertex(pointx[i] - midX, pointy[i] - midY, Depth);
         P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, Depth);
 
-
+        backTrig.push({
+            P1: i,
+            P2: i + 1,
+            P3: pointx.length-1+(i+1)
+        });
+        backTrig.push({
+            P1: i,
+            P2: i + pointx.length - 1,
+            P3: pointx.length - 1 + (i + 1)
+        });
 
 
     }
+    resultTriangles = resultTriangles.concat(backTrig);
+
     P5.rotateY(P5.millis() / 1000);
     P5.endShape(P5.CLOSE);
 }
@@ -139,6 +163,7 @@ function calMidY() {
 function Remove3D() {
     P5.remove();
 }
+
 
 function CamDistanceChanged(value) {
     distToCam = value;
@@ -170,4 +195,13 @@ function SendTrigs() {
     }
     else
         return null;
+}
+
+function saveAsFile(filename, bytesBase64) {
+    var link = document.createElement('a');
+    link.download = filename;
+    link.href = "data:application/octet-stream;base64," + bytesBase64;
+    document.body.appendChild(link); // Needed for Firefox
+    link.click();
+    document.body.removeChild(link);
 }
