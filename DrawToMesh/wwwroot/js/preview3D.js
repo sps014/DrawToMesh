@@ -2,11 +2,16 @@
 let canvas3d;
 let gridGap = 10;
 let mode;
-let distToCam=0;
+let distToCam = 0;
+let wireFrameControl;
+let showWireFrame = true;
+
 function CreateCanvas3D(Mode=0) {
 
     mode = Mode;
     canvas3d = document.getElementById("p3dboard");
+    wireFrameControl = document.getElementById("wireFrame");
+    wireFrameControl.onchange = WireFrameBox;
 
     const s = (p) => {
         p.setup = function () {
@@ -32,6 +37,15 @@ function CreateCanvas3D(Mode=0) {
 
 function Draw3D()
 {
+
+    if (!showWireFrame) {
+        P5.strokeWeight(0);
+    }
+    else {
+        P5.strokeWeight(2);
+    }
+
+    //camera offset
     P5.camera(0, 0, distToCam + (canvas3d.offsetHeight / 2.0) / Math.tan(P5.PI * 30.0 / 180.0), 0, 0, 0, 0, 1, 0);
     if (mode == 0)
     {
@@ -110,4 +124,7 @@ function Remove3D() {
 }
 function CamDistanceChanged(value) {
     distToCam = value;
+}
+function WireFrameBox() {
+    showWireFrame = wireFrameControl.checked;
 }

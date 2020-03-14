@@ -22,8 +22,21 @@
                             </div>
                             <div class="col-lg-3 black accent-3 rounded-right py-5 px-md-5">
                                 <h4 class="font-weight-bold ml-3 mb-4 pb-2">Tweaks</h4>
+
+                                <!--Show Wireframe-->
+
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="wireFrame" checked>
+                                    <label class="custom-control-label" for="wireFrame">Show Wireframe View</label>
+                                </div>
+                                <br />
+                                <!--D2C-->
+
                                 <p>Distance from Camera</p>
                                 <input type="range" class="custom-range" min="-250" max="250" @bind-value="@DistanceFromCam" id="customRange2">
+                                <br />
+
+
                             </div>
                         </div>
                     </div>
