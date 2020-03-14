@@ -30,12 +30,19 @@
                                     <label class="custom-control-label" for="wireFrame">Show Wireframe View</label>
                                 </div>
                                 <br />
+
+                                <!--Depth-->
+                                <p>Depth</p>
+                                <input type="range" class="custom-range" min="0" max="100" step="1" @bind-value="@ModelDepth" id="customRange2">
+                                <br />
                                 <!--D2C-->
 
                                 <p>Distance from Camera</p>
                                 <input type="range" class="custom-range" min="-400" max="400" @bind-value="@DistanceFromCam" id="customRange2">
                                 <br />
 
+                                <!--Obj Download-->
+                                <button class="btn blue-gradient">Download Obj</button>
 
                             </div>
                         </div>
@@ -75,6 +82,7 @@
 {
     [Parameter]
     public string type { get; set; }
+
     private int distanceCam;
     private int DistanceFromCam
     {
@@ -88,6 +96,21 @@
             DistanceChanged();
         }
     }
+
+    private int modelDepth=40;
+    private int ModelDepth
+    {
+        get
+        {
+            return modelDepth;
+        }
+        set
+        {
+            modelDepth = value;
+            DepthChanged();
+        }
+    }
+
 
     double[] pointX;
     double[] pointY;
@@ -129,5 +152,10 @@
     {
         await Runtime.InvokeVoidAsync("CamDistanceChanged",DistanceFromCam);
     }
+    private async void DepthChanged()
+    {
+        await Runtime.InvokeVoidAsync("DepthChanged", ModelDepth);
+    }
+    
 
 }

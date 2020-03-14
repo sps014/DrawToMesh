@@ -3,11 +3,13 @@ let canvas3d;
 let gridGap = 10;
 let mode;
 let distToCam = 0;
+let Depth = 40;
+
 let wireFrameControl;
 let showWireFrame = true;
 
-function CreateCanvas3D(Mode=0) {
-
+function CreateCanvas3D(Mode = 0)
+{
     mode = Mode;
     canvas3d = document.getElementById("p3dboard");
     wireFrameControl = document.getElementById("wireFrame");
@@ -76,24 +78,24 @@ function DrawFromShape()
         P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY);
         P5.vertex(pointx[res[i + 2]] - midX, pointy[res[i + 2]] - midY);
 
-        P5.vertex(pointx[res[i + 2]] - midX, pointy[res[i + 2]] - midY,40);
-        P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY,40);
-        P5.vertex(pointx[res[i]] - midX, pointy[res[i]] - midY,40);
+        P5.vertex(pointx[res[i + 2]] - midX, pointy[res[i + 2]] - midY, Depth);
+        P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY, Depth);
+        P5.vertex(pointx[res[i]] - midX, pointy[res[i]] - midY, Depth);
 
     }
 
-
+    //side rect
 
     for (let i = 0; i < pointx.length - 1; i++) {
 
 
         P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
         P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 0);
-        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
+        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, Depth);
 
         P5.vertex(pointx[i] - midX, pointy[i] - midY, 0);
-        P5.vertex(pointx[i] - midX, pointy[i] - midY, 40);
-        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, 40);
+        P5.vertex(pointx[i] - midX, pointy[i] - midY, Depth);
+        P5.vertex(pointx[i + 1] - midX, pointy[i + 1] - midY, Depth);
 
 
 
@@ -122,9 +124,15 @@ function calMidY() {
 function Remove3D() {
     P5.remove();
 }
+
 function CamDistanceChanged(value) {
     distToCam = value;
 }
+function DepthChanged(value) {
+    Depth = value;
+    console.log(value);
+}
+
 function WireFrameBox() {
     showWireFrame = wireFrameControl.checked;
 }
