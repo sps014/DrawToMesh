@@ -59,6 +59,10 @@ function DrawFromShape()
         P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY);
         P5.vertex(pointx[res[i + 2]] - midX, pointy[res[i + 2]] - midY);
 
+        P5.vertex(pointx[res[i + 2]] - midX, pointy[res[i + 2]] - midY,40);
+        P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY,40);
+        P5.vertex(pointx[res[i]] - midX, pointy[res[i]] - midY,40);
+
     }
 
 
@@ -76,8 +80,6 @@ function DrawFromShape()
 
 
 
-        //P5.vertex(pointx[i] - calMidX(), pointy[i] - calMidY(), 0);
-        //P5.vertex(pointx[i] - calMidX(), pointy[i] - calMidY(), 40);
 
     }
     P5.rotateY(P5.millis() / 1000);
