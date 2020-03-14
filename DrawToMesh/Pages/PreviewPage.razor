@@ -161,7 +161,8 @@
     {
         var res=await Runtime.InvokeAsync<Point[]>("SendVertex");
         var trigs = await Runtime.InvokeAsync<Triangle[]>("SendTrigs");
-        Console.WriteLine(trigs.Length);
+        ObjBuilder builder = new ObjBuilder();
+        Console.WriteLine(builder.Export(res, trigs));
     }
 
 
