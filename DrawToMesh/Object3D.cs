@@ -33,6 +33,7 @@ namespace DrawToMesh
         /// index p3
         /// </summary>
         public int P3 { get; set; }
+        public Triangle() { }
         /// <summary>
         /// pass indexea
         /// </summary>

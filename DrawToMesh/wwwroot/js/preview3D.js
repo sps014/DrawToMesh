@@ -8,6 +8,10 @@ let Depth = 40;
 let wireFrameControl;
 let showWireFrame = true;
 
+
+let resultVertex = [];
+let resultTriangles = [];
+
 function CreateCanvas3D(Mode = 0)
 {
     mode = Mode;
@@ -39,6 +43,8 @@ function CreateCanvas3D(Mode = 0)
 
 function Draw3D()
 {
+    resultVertex = [];
+    resultTriangles = [];
 
     if (!showWireFrame) {
         P5.strokeWeight(0);
@@ -63,17 +69,24 @@ function DrawFromShape()
     P5.smooth();
     P5.fill(0, 50, 170);
     P5.beginShape(P5.TRIANGLES);
+
     let midX = calMidX();
     let midY = calMidY();
 
     let parr = [];
-    for (let i = 0; i < pointx.length - 1; i++) {
+    for (let i = 0; i < pointx.length - 1; i++)
+    {
         parr.push(pointx[i]);
         parr.push(pointy[i]);
+
+        resultVertex.push({ X: pointx[i], Y: pointy[i],Z:0 })
     }
 
     let res = earcut(parr);
-    for (let i = 0; i < res.length; i += 3) {
+
+
+    for (let i = 0; i < res.length; i += 3)
+    {
         P5.vertex(pointx[res[i]] - midX, pointy[res[i]] - midY);
         P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY);
         P5.vertex(pointx[res[i + 2]] - midX, pointy[res[i + 2]] - midY);
@@ -81,6 +94,8 @@ function DrawFromShape()
         P5.vertex(pointx[res[i + 2]] - midX, pointy[res[i + 2]] - midY, Depth);
         P5.vertex(pointx[res[i + 1]] - midX, pointy[res[i + 1]] - midY, Depth);
         P5.vertex(pointx[res[i]] - midX, pointy[res[i]] - midY, Depth);
+
+        resultTriangles.push({ P1: res[i], P2: res[i + 1], P3: res[i + 2] });
 
     }
 
@@ -135,4 +150,24 @@ function DepthChanged(value) {
 
 function WireFrameBox() {
     showWireFrame = wireFrameControl.checked;
+}
+
+
+function SendVertex()
+{
+
+    if (mode == 0) {
+        return resultVertex;
+    }
+    else
+        return null;
+}
+
+function SendTrigs() {
+
+    if (mode == 0) {
+        return resultTriangles;
+    }
+    else
+        return null;
 }
