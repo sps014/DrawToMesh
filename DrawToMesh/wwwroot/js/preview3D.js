@@ -222,7 +222,7 @@ function LoadObj() {
             reader.readAsDataURL(file);
             reader.onload = function (evt) {
                 if (file.type.indexOf(".obj") < 0) {
-                    alert('you choose file of type' + file.type);
+                    alert('you choose file of type:' + file.type);
                     return;
                 }
                 console.log(file);

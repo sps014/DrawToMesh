@@ -196,7 +196,7 @@ function OpenFileDialog()
             reader.onload = function (evt)
             {
                 if (file.type.indexOf("image") < 0) {
-                    alert('you choose file of type' + file.type);
+                    alert('you choose file of type:' + file.type);
                     refImage = null;
                     return;
                 }
