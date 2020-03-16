@@ -1,7 +1,84 @@
 ﻿@page "/help"
-<NavMenu/>
-<h3>Help Page</h3>
+<NavMenu />
 
-@code {
+<div class="container my-5 py-5 z-depth-1 white">
 
-}
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center dark-grey-text">
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+
+            <!--Grid column-->
+            <div class="col-xl-6 col-md-8">
+
+                <h3 class="font-weight-bold">Doodle 3D Help</h3>
+
+                <p class="text-muted">
+                    Description of each button in Doodle creation and its work is Given below
+                </p>
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+        <!--Grid row-->
+        <div class="row">
+
+            <!--First column-->
+            <div class="col-lg-3 col-md-6">
+                <i class="fas fa-undo-alt white-text fa-2x ml-2"></i>
+
+                <p class="font-weight-bold my-3">Undo</p>
+
+                <p class="text-muted">Removes Last added point.</p>
+            </div>
+            <!--/First column-->
+            <!--Second column-->
+            <div class="col-lg-3 col-md-6">
+                <i class="fas fa-backspace white-text fa-2x"></i>
+
+                <p class="font-weight-bold my-3">Clear Background</p>
+
+                <p class="text-muted">Removes All the points from Canvas.</p>
+            </div>
+            <!--/Second column-->
+            <!--Third column-->
+            <div class="col-lg-3 col-md-6">
+                <i class="fas fa-image white-text fa-2x"></i>
+
+                <p class="font-weight-bold my-3">Add Ref Image</p>
+
+                <p class="text-muted">Use image to draw outline on top of it , for your reference. </p>
+            </div>
+            <!--/Third column-->
+            <!--Fourth column-->
+            <div class="col-lg-3 col-md-6">
+                <i class="fas fa-dice-d20 fa-2x"></i>
+
+                <p class="font-weight-bold my-3">Build 3D</p>
+
+                <p class="text-muted">From the point Creates 3D object.</p>
+            </div>
+            <!--/Fourth column-->
+
+        </div>
+        <!--/Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: rgb(195,234,237);
+        background: linear-gradient(90deg, rgba(195,234,237,1) 0%, rgba(126,126,191,1) 35%, rgba(87,116,120,1) 100%);
+    }
+</style>
