@@ -163,7 +163,6 @@
         var trigs = await Runtime.InvokeAsync<Triangle[]>("SendTrigs");
         ObjBuilder builder = new ObjBuilder();
         await FileUtil.SaveAs(Runtime, "model.obj", builder.Export(res, trigs));
-        Console.WriteLine(builder.Export(res, trigs));
     }
 
 
