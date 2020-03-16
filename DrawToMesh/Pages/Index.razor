@@ -45,7 +45,7 @@
             <div class="col-md-6 mb-4">
 
                 <!-- Card -->
-                <div  class="card hoverable waves-effect" @onclick="OnObjLoad">
+                <div  class="card hoverable waves-effect">
 
                     <!-- Card content -->
                     <div class="card-body" data-toggle="modal" data-target="#basicExampleModal" for="file-upload">
@@ -55,8 +55,8 @@
                                 <i class="fas fa-cloud-upload-alt fa-2x blue-text"></i>
                             </span>
                             <div class="media-body">
-                                <h5 class="dark-grey-text mb-3">OBJ Viewer</h5>
-                                <p class="font-weight-light text-muted mb-0">View your own custom  3D wavefront Obj Model in browser window.</p>
+                                <h5 class="dark-grey-text mb-3">Souce Code</h5>
+                                <p class="font-weight-light text-muted mb-0">View the source code for this client side web application.</p>
                             </div>
                         </div>
 
@@ -78,9 +78,6 @@
 </div>
 
 
-<input id="file-upload" style="visibility:hidden" type="file" />
-
-
 
 
 <style>
@@ -91,11 +88,3 @@
         background-position: 0% 0%;
     }
 </style>
-
-@code
-{
-    async void OnObjLoad()
-    {
-        await Runtime.InvokeVoidAsync("LoadObj");
-    }
-}
