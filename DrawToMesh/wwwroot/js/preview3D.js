@@ -205,3 +205,33 @@ function saveAsFile(filename, bytesBase64) {
     link.click();
     document.body.removeChild(link);
 }
+
+function LoadObj() {
+
+    let filedialog = document.getElementById("file-upload");
+
+    filedialog.onclick = function () {
+        this.value = null;
+    };
+    filedialog.click();
+
+    filedialog.onchange = function () {
+        let file = filedialog.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (evt) {
+                if (file.type.indexOf(".obj") < 0) {
+                    alert('you choose file of type' + file.type);
+                    return;
+                }
+                console.log(file);
+
+                reader.onerror = function (evt) {
+                    alert("error reading file");
+                }
+            }
+        }
+
+    }
+}

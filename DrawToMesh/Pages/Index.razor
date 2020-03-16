@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IJSRuntime Runtime 
 <NavMenu />
 
 
@@ -25,7 +26,7 @@
 
                         <div class="media">
                             <span class="card-img-100 d-inline-flex justify-content-center align-items-center rounded-circle grey lighten-3 mr-4">
-                                <i class="fas fa-draw-polygon fa-2x"></i> 
+                                <i class="fas fa-draw-polygon fa-2x"></i>
                             </span>
                             <div class="media-body">
                                 <h5 class="dark-grey-text mb-3">Draw Doodle</h5>
@@ -44,24 +45,24 @@
             <div class="col-md-6 mb-4">
 
                 <!-- Card -->
-                <a href="#!" class="card hoverable waves-effect">
+                <div  class="card hoverable waves-effect" @onclick="OnObjLoad">
 
                     <!-- Card content -->
-                    <div class="card-body">
+                    <div class="card-body" data-toggle="modal" data-target="#basicExampleModal" for="file-upload">
 
                         <div class="media">
                             <span class="card-img-100 d-inline-flex justify-content-center align-items-center rounded-circle grey lighten-3 mr-4">
-                                <i class="fas fa-cloud-upload-alt fa-2x"></i>                           
+                                <i class="fas fa-cloud-upload-alt fa-2x blue-text"></i>
                             </span>
                             <div class="media-body">
-                                <h5 class="dark-grey-text mb-3">Upload Image</h5>
-                                <p class="font-weight-light text-muted mb-0">Use a 2D image from your device and Convert that to a 3D Doodle</p>
+                                <h5 class="dark-grey-text mb-3">OBJ Viewer</h5>
+                                <p class="font-weight-light text-muted mb-0">View your own custom  3D wavefront Obj Model in browser window.</p>
                             </div>
                         </div>
 
                     </div>
 
-                </a>
+                </div>
                 <!-- Card -->
                 <!-- Card -->
 
@@ -75,6 +76,13 @@
 
 
 </div>
+
+
+<input id="file-upload" style="visibility:hidden" type="file" />
+
+
+
+
 <style>
     body {
         background-repeat: no-repeat;
@@ -83,3 +91,11 @@
         background-position: 0% 0%;
     }
 </style>
+
+@code
+{
+    async void OnObjLoad()
+    {
+        await Runtime.InvokeVoidAsync("LoadObj");
+    }
+}
