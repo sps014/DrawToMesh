@@ -1,18 +1,40 @@
 ﻿@page "/draw"
 @inject IJSRuntime Runtime
 @inject NavigationManager NavManager
+
 <NavMenu />
 
-<div class="btn-toolbar flex-center" style="position:relative;top:-5px" role="toolbar" aria-label="Toolbar with button groups">
-    <div class="btn-group mr-0" role="group" aria-label="First group">
-        <!--button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button-->
-        <button type="button" class="btn light-blue waves-effect" @onclick="Undo"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
-        <button type="button" class="btn light-blue waves-effect" @onclick="Redo"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
-        <button type="button" class="btn light-blue waves-effect" @onclick="DeleteAll"><i class="fas fa-backspace white-text fa-2x"></i></button>
-        <button type="button" class="btn light-blue waves-effect" data-toggle="modal" data-target="#basicExampleModal" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
-        <button type="button" class="btn peach-gradient waves-effect" @onclick="Visualize3D"><i class="fas fa-dice-d20 fa-2x"></i></button>
+@if (WindowWidth > 500)
+{
+    <div class="btn-toolbar flex-center" style="position:relative;top:-5px" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-0" role="group" aria-label="First group">
+            <!--button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button-->
+            <button type="button" class="btn light-blue waves-effect" @onclick="Undo" style="width:20%;"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
+            <button type="button" class="btn light-blue waves-effect" @onclick="Redo" style="width:20%;"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
+            <button type="button" class="btn light-blue waves-effect" @onclick="DeleteAll" style="width:20%;"><i class="fas fa-backspace white-text fa-2x"></i></button>
+            <button type="button" class="btn light-blue waves-effect" data-toggle="modal" data-target="#basicExampleModal" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
+            <button type="button" class="btn peach-gradient waves-effect" @onclick="Visualize3D" style="width:20%;"><i class="fas fa-dice-d20 fa-2x"></i></button>
+        </div>
     </div>
-</div>
+}
+else
+{
+    <div class="btn-toolbar flex-center" style="position:relative;top:-5px" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-0" role="group" aria-label="First group">
+            <!--button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button-->
+            <button type="button" class="btn light-blue waves-effect" @onclick="Undo" style="width:20%;"><i class="fas fa-undo-alt white-text fa-2x"></i></button>
+            <button type="button" class="btn light-blue waves-effect" @onclick="Redo" style="width:20%;"><i class="fas fa-redo-alt white-text fa-2x"></i></button>
+            <button type="button" class="btn light-blue waves-effect" @onclick="DeleteAll" style="width:20%;"><i class="fas fa-backspace white-text fa-2x"></i></button>
+        </div>
+    </div>
+    <div class="btn-toolbar flex-center" style="position:absolute;bottom:-46%;left:50%;right:50%" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-0" role="group" aria-label="First group">
+            <!--button type="button" class="btn light-blue waves-effect"><i class="fas fa-pencil-alt white-text fa-2x" aria-hidden="true"></i></button-->
+            <button type="button" class="btn light-blue waves-effect" data-toggle="modal" data-target="#basicExampleModal" for="file-upload"><i class="fas fa-image white-text fa-2x"></i></button>
+            <button type="button" class="btn peach-gradient waves-effect" @onclick="Visualize3D"><i class="fas fa-dice-d20 fa-2x"></i></button>
+        </div>
+    </div>
+}
 <input id="file-upload" style="visibility:hidden" type="file" />
 
 <div id="drawingBoard" class="shadow">
@@ -20,7 +42,7 @@
 </div>
 @if (!ErrorVisible)
 {
-    <div class="alert alert-danger" role="alert" style="position:absolute;bottom:-13px;width:100%">
+    <div class="alert alert-danger" data-dismiss="alert"  role="alert" style="position:absolute;bottom:-13px;width:100%">
         Path traced should be closed , ie. first and last point should be at same location and there must be more than 2 Points.
     </div>
 }
@@ -66,24 +88,31 @@
         background-color: white;
         left: 5%;
         top: 112px;
-        bottom: 5%;
+        bottom: 212px;
         right: 5%;
         position: absolute;
         width: 90%;
         z-index: -1;
-        height: 82%;
+        height: 80%;
     }
 </style>
 
 @code
 {
     private bool ErrorVisible = true;
+    double WindowWidth { get; set; }
+
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
         if (firstRender)
+        {
             Init();
+            GetWidth();
+        }
+
     }
+
     private async void Init()
     {
         await Runtime.InvokeVoidAsync("CreateCanvas");
@@ -157,5 +186,10 @@
     async void Remove3D()
     {
         await Runtime.InvokeVoidAsync("Remove3D");
+    }
+    async void GetWidth()
+    {
+        WindowWidth = await Runtime.InvokeAsync<double>("GetWindowWidth");
+        StateHasChanged();
     }
 }

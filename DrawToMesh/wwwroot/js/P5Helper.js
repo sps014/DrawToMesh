@@ -119,7 +119,7 @@ function onDraw()
     }
 
     P5Object.stroke(255, 0, 0);
-    if (shouldAddPoints && pointx.length >= 1 && P5Object.mouseX >= 0 && P5Object.mouseY >= 0)
+    if (shouldAddPoints && pointx.length >= 1 && P5Object.mouseX >= 0 && P5Object.mouseY >= 0 && P5Object.mouseX <= canvas.offsetWidth && P5Object.mouseY <= canvas.offsetHeight)
     {
         P5Object.line(pointx[pointx.length - 1], pointy[pointx.length - 1], P5Object.mouseX, P5Object.mouseY);
     }
@@ -269,4 +269,8 @@ function DeleteAll() {
 function Remove2D()
 {
     P5Object.remove();
+}
+
+function GetWindowWidth() {
+    return window.innerWidth;
 }
