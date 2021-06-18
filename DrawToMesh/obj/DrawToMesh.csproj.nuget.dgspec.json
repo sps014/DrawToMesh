@@ -1,35 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shive\\Desktop\\Test\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj": {}
+    "C:\\Users\\shive\\Desktop\\Projects\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shive\\Desktop\\Test\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj": {
+    "C:\\Users\\shive\\Desktop\\Projects\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Test\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj",
+        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Projects\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj",
         "projectName": "DrawToMesh",
-        "projectPath": "C:\\Users\\shive\\Desktop\\Test\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj",
+        "projectPath": "C:\\Users\\shive\\Desktop\\Projects\\DrawToMesh\\DrawToMesh\\DrawToMesh.csproj",
         "packagesPath": "C:\\Users\\shive\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shive\\Desktop\\Test\\DrawToMesh\\DrawToMesh\\obj\\",
+        "outputPath": "C:\\Users\\shive\\Desktop\\Projects\\DrawToMesh\\DrawToMesh\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\shive\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://aka.ms/maui-preview/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -40,25 +44,17 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Blazor.HttpClient": {
-              "target": "Package",
-              "version": "[3.2.0-preview2.20160.5, )"
-            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
-              "version": "[3.2.0-preview2.20160.5, )"
-            },
-            "Microsoft.AspNetCore.Components.WebAssembly.Build": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[3.2.0-preview2.20160.5, )"
+              "version": "[6.0.0-preview.5.*, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.2.0-preview2.20160.5, )"
+              "version": "[6.0.0-preview.5.*, )"
             }
           },
           "imports": [
@@ -71,12 +67,23 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[6.0.0-preview.5.21301.5, 6.0.0-preview.5.21301.5]"
+            }
+          ],
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200-preview-015002\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.5.21302.13\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
         }
       }
     }
